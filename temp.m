@@ -12,9 +12,10 @@ end
 ivdata = ifft(ftdata*length(data));  
 hold on
 plot(ivdata,'r')
+Bias = zeros(length(data),1);
 for i = 1:length(data)
-    Bias(i) = (data(i) - ivdata(i))/data(i)*100;
+    Bias(i) = abs(data(i) - ivdata(i))/data(i)*100;
 end
-mean Bias
+mean(Bias)
 
     
