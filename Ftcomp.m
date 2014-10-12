@@ -76,7 +76,7 @@ for j = 1:n
         csignal(j) = csignal(j) + campt(i)*cos( 2*pi*cfreq(i)*(j-1)*3600 + cphase(i) );
     end
     if j>=n/2+1
-    Bias(j)= abs(sample(j) - csignal(j))/sample(j)*100;
+        Bias(j)= abs(sample(j) - csignal(j))/sample(j)*100;
     end
 end
 plot(csignal,'r')

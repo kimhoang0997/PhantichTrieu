@@ -47,9 +47,9 @@ Bias = zeros(h/2,1);
 for i = 1:h
     f(i) = mean(data) + X(1)*sin(2*pi*i*dt/K1)+X(2)*sin(2*pi*i*dt/O1)+X(3)*sin(2*pi*i*dt/M2)+X(4)*sin(2*pi*i*dt/S2)+X(5)*cos(2*pi*i*dt/K1)+X(6)*cos(2*pi*i*dt/O1)+X(7)*cos(2*pi*i*dt/M2)+X(8)*cos(2*pi*i*dt/S2);
     if i >= h/2+1
-    Bias(i)= abs(data(i) - f(i))/data(i)*100;    
+        Bias(i)= abs(data(i) - f(i))/data(i)*100;    
     end
 end
 hold on
 plot (f,'r')
-mean(Bias)
+sum(Bias)/(h/2)
