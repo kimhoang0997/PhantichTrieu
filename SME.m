@@ -6,10 +6,10 @@ O1 = 25.8;
 M2 = 12.4;
 S2 = 12;
 t = 24;
-n = 31;
+n = 59;
 h = n*t;
 
-data = xlsread('Trieu.xls')';
+data = xlsread('Trieu2thang.xlsx')';
 temp = zeros(h,1);
 k = 1;
 for j = 1:n
@@ -24,7 +24,7 @@ plot(data)
 A = zeros(h,8);
 B = zeros(h,1);
 dt = 1;
-for i = 1:h/2
+for i = 1:h
    A(i,1) = sin(2*pi*i*dt/K1);
    A(i,2) = sin(2*pi*i*dt/O1);
    A(i,3) = sin(2*pi*i*dt/M2);
@@ -43,13 +43,11 @@ end
 X = (A'*A)\(A'*B);
 
 f = zeros(h,1);
-Bias = zeros(h/2,1);
+Bias = zeros(h,1);
 for i = 1:h
     f(i) = mean(data) + X(1)*sin(2*pi*i*dt/K1)+X(2)*sin(2*pi*i*dt/O1)+X(3)*sin(2*pi*i*dt/M2)+X(4)*sin(2*pi*i*dt/S2)+X(5)*cos(2*pi*i*dt/K1)+X(6)*cos(2*pi*i*dt/O1)+X(7)*cos(2*pi*i*dt/M2)+X(8)*cos(2*pi*i*dt/S2);
-    if i >= h/2+1
-        Bias(i)= abs(data(i) - f(i))/data(i)*100;    
-    end
+    Bias(i)= abs(data(i) - f(i))/data(i)*100;    
 end
-hold on
+ hold on
 plot (f,'r')
-sum(Bias)/(h/2)
+mean(Bias)
